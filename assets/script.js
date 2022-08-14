@@ -39,4 +39,26 @@
     let date=new Date();
     let year=date.getFullYear();
     let month=date.getMonth()+1;
-    createCalendar(document.getElementById("calendar"), prompt("Enter the year",year), prompt("Enter the month",month));
+    
+    function isValidYear(){
+      let askYear=prompt("Enter the year",year);
+      if(askYear>1900 && askYear<2100){
+        return askYear;
+      }
+      else{
+        alert("You have entered an invalid year");
+        return isValidYear()
+      }
+    }
+    function isValidMonth(){
+      let askMonth=prompt("Enter the month",month);
+      if(askMonth>=1 && askMonth<=12){
+        return askMonth;
+      }
+      else{
+        alert("You have entered an invalid month");
+        return isValidMonth()
+      }
+    }
+   
+    createCalendar(document.getElementById("calendar"), isValidYear(), isValidMonth());
